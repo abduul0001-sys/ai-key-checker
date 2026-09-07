@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0a1020">
+  <title>AI Credential Health Check v2.1</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<main class="shell">
+  <header class="hero">
+    <div class="eyebrow">PRIVATE TOOL · RAILWAY READY · V2.1</div>
+    <h1>AI Credential Health Check</h1>
+    <p>Cek API key/token/kredensial berbagai provider AI tanpa menyimpannya. Mendukung API key biasa serta profil Azure OpenAI, Vertex AI, AWS Bedrock, dan OpenAI-compatible.</p>
+    <div class="notice">Gunakan hanya credential milik sendiri atau yang memang kamu diberi izin untuk menguji.</div>
+  </header>
+  <section class="card">
+    <div class="field"><label for="provider">Provider</label><select id="provider"></select><a id="docs" class="docs" href="#" target="_blank" rel="noreferrer">Dokumentasi provider ↗</a><small id="providerNote"></small></div>
+    <div id="passwordField" class="field hidden"><label for="appPassword">Password aplikasi</label><input id="appPassword" type="password" autocomplete="current-password" placeholder="APP_PASSWORD dari Railway"><small>Melindungi checker agar tidak menjadi endpoint publik.</small></div>
+    <div id="credentialFields"></div>
+    <small>Credential hanya berada di memori request, dikirim ke provider terpilih, dan tidak disimpan ke database/localStorage.</small>
+    <label class="checkline"><input id="clearAfter" type="checkbox" checked><span>Hapus field rahasia setelah pengecekan</span></label>
+    <button id="checkBtn" class="primary" type="button">Cek Credential</button><div id="lockWarning" class="lock hidden"></div>
+  </section>
+  <section id="result" class="card result hidden" aria-live="polite">
+    <div class="result-head"><div><div class="eyebrow">HASIL</div><h2 id="resultProvider">-</h2></div><span id="statusBadge" class="badge">-</span></div>
+    <div class="metrics"><div><span>HTTP</span><strong id="httpStatus">-</strong></div><div><span>Latency</span><strong id="latency">-</strong></div><div><span>Waktu</span><strong id="checkedAt">-</strong></div></div>
+    <p id="message" class="message hidden"></p><div id="details" class="details"></div>
+  </section>
+  <section class="card compact"><h2>Provider & credential profiles</h2><div id="providerGrid" class="provider-grid"></div><p class="muted">Tidak mungkin menjamin secara literal semua provider AI di dunia karena layanan dan endpoint baru terus muncul. Profil <b>Custom OpenAI-Compatible</b> tersedia untuk provider tambahan dengan API kompatibel OpenAI, dengan proteksi SSRF untuk memblokir jaringan private/lokal.</p></section>
+  <footer><span id="serviceStatus">Memuat konfigurasi…</span><span>•</span><span>Credentials are never persisted</span></footer>
+</main><script type="module" src="/app.js"></script>
+</body></html>
